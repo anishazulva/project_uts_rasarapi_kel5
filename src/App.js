@@ -8,6 +8,7 @@ import DailyMenu from "./pages/DailyMenu";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import "./index"
 
 function App() {
   return (
