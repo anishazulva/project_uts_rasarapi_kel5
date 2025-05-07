@@ -7,7 +7,7 @@ function RecipeCard({ title, image, id }) {
       <img src={image} alt={title} className="w-full h-48 object-cover mb-4" />
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
       <p className="text-gray-600">Resep yang enak dan mudah dibuat di rumah.</p>
-      <Link to={/resep/${id}} className="text-blue-500 mt-4 block">
+      <Link to={`/resep/${id}`} className="text-blue-500 mt-4 block">
         Lihat Resep
       </Link>
     </div>
