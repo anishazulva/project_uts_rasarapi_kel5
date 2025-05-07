@@ -1,5 +1,4 @@
 import React from "react";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Categories from "./pages/Categories";
@@ -8,7 +7,7 @@ import DailyMenu from "./pages/DailyMenu";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import "./index"
+import "./index";
 
 function App() {
   return (
