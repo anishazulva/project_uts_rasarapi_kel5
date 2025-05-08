@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // Import gambar langsung
 import ayam_bakar from '../assets/ayam_bakar.jpg';
-import sayur_asem from '../assets/sayur_asem.jpg';
+import sayur_asem from '../assets/sayur_asem.jpeg';
 import nasi_goreng from '../assets/nasi_goreng.jpg';
 import mie_goreng from '../assets/mie_goreng.jpg';
 import sate from '../assets/sate.jpg';
