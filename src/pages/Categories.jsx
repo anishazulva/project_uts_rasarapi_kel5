@@ -7,7 +7,7 @@ function Categories() {
       <h1 className="text-4xl font-bold mb-6">Kategori Resep</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold">🍛 Masakan Utama</h2>
+          <h2 className="text-xl font-semibold">🐔 Olahan Ayam</h2>
           <ul className="mt-2">
             <Link to="/resep/1">
               <li>Ayam Bakar Kecap</li>
@@ -107,8 +107,8 @@ function Categories() {
           </ul>
         </div>
         <div className="bg-white p-4 rounded-lg shadow-md">
-          <h2 className="text-xl font-semibold">🧆 Cemilan & Gorengan</h2>
-          <h3 className="text-lg font-semibold mt-2">🧀 Camilan Asin</h3>
+          <h2 className="text-xl font-semibold">🧆 Cemilan</h2>
+          <h3 className="text-lg font-semibold mt-2">🧀 Cemilan Asin</h3>
           <ul className="mt-2">
             <Link to="/resep/30">
               <li>Tahu Isi Sayur</li>
@@ -126,7 +126,7 @@ function Categories() {
               <li>Cireng Bumbu Rujak</li>
             </Link>
           </ul>
-          <h3 className="text-lg font-semibold mt-4">🍮 Camilan Manis</h3>
+          <h3 className="text-lg font-semibold mt-4">🍮 Cemilan Manis</h3>
           <ul className="mt-2">
             <Link to="/resep/35">
               <li>Pisang Goreng Coklat</li>

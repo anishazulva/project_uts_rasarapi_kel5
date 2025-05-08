@@ -1,37 +1,84 @@
-import React from "react";
-import { useState } from "react";
-
-const savedRecipes = [
-  { id: 1, title: "Ayam Bakar", image: "https://source.unsplash.com/400x300/?grilled-chicken" },
-  { id: 2, title: "Sayur Asem", image: "https://source.unsplash.com/400x300/?vegetables" },
-];
+import React, { useState } from "react";
 
 function Profile() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
+  const [password, setPassword] = useState("");
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setProfilePic(URL.createObjectURL(file));
+    }
+  };
+
+  const handleSave = () => {
+    alert("Perubahan profil telah disimpan (dummy).");
+  };
 
   return (
-    <div className={`min-h-screen px-4 py-8 ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
+    <div className="min-h-screen px-4 py-8 bg-white text-gray-900">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Profil & Favorit</h1>
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="px-4 py-2 bg-orange-500 text-white rounded-xl shadow hover:bg-orange-600"
-          >
-            {darkMode ? "Light Mode" : "Dark Mode"}
-          </button>
+        <h1 className="text-3xl font-bold mb-6">Profil Pengguna</h1>
+
+        {/* Foto Profil */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200">
+            {profilePic ? (
+              <img src={profilePic} alt="Profil" className="w-full h-full object-cover" />
+            ) : (
+              <div className="flex items-center justify-center h-full text-gray-500">Foto</div>
+            )}
+          </div>
+          <input type="file" accept="image/*" onChange={handleImageUpload} />
         </div>
 
-        <h2 className="text-xl font-semibold mb-4">Resep yang Disimpan</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {savedRecipes.map((recipe) => (
-            <div key={recipe.id} className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md">
-              <img src={recipe.image} alt={recipe.title} className="w-full h-40 object-cover" />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">{recipe.title}</h3>
-              </div>
-            </div>
-          ))}
+        {/* Nama dan Deskripsi */}
+        <div className="bg-gray-100 p-6 rounded-xl mb-6 shadow">
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Nama</label>
+            <input
+              type="text"
+              placeholder="Masukkan nama kamu"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full p-2 rounded border border-gray-300"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block font-semibold mb-1">Deskripsi Diri</label>
+            <textarea
+              placeholder="Contoh: Saya suka memasak menu rumahan..."
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              className="w-full p-2 rounded border border-gray-300"
+              rows={3}
+            />
+          </div>
+        </div>
+
+        {/* Ganti Password */}
+        <div className="bg-gray-100 p-6 rounded-xl mb-6 shadow">
+          <label className="block font-semibold mb-2">Ganti Password</label>
+          <input
+            type="password"
+            placeholder="Masukkan password baru"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 rounded border border-gray-300"
+          />
+        </div>
+
+        {/* Tombol Simpan */}
+        <div className="text-right">
+          <button
+            onClick={handleSave}
+            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+          >
+            Simpan Perubahan
+          </button>
         </div>
       </div>
     </div>
