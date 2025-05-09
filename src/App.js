@@ -13,8 +13,11 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
+        {/* Navbar tetap di atas */}
         <Navbar />
-        <main className="flex-grow">
+        
+        {/* Konten utama dengan padding-top agar tidak tertutup oleh Navbar */}
+        <main className="flex-grow pt-16">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/kategori" element={<Categories />} />
@@ -23,6 +26,8 @@ function App() {
             <Route path="/profil" element={<Profile />} />
           </Routes>
         </main>
+
+        {/* Footer */}
         <Footer />
       </div>
     </Router>

@@ -4,7 +4,7 @@ import { FaHome, FaListAlt, FaCalendarAlt, FaUser } from "react-icons/fa";
 
 function Navbar() {
   return (
-    <nav className="bg-orange-100 shadow-md p-4">
+    <nav className="fixed top-0 w-full bg-orange-100 shadow-md p-4 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo & Judul */}
         <Link to="/" className="flex items-center space-x-2">
