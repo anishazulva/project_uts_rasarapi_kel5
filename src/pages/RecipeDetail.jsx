@@ -758,29 +758,33 @@ function RecipeDetail() {
   const recipe = recipeDetails[id];
 
   if (!recipe) {
-    return <div className="p-4 text-center text-red-600">Resep tidak ditemukan.</div>;
+    return <div className="text-center text-red-500 text-lg mt-10">Resep tidak ditemukan.</div>;
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-6">{recipe.title}</h1>
+    <div className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center mb-6 text-orange-600">{recipe.title}</h1>
       <img
         src={recipe.image}
         alt={recipe.title}
-        className="w-full h-64 object-cover mb-4 rounded-lg"
+        className="w-full max-h-96 object-cover rounded-2xl shadow-md mb-8"
       />
-      <h2 className="text-2xl mb-4">Bahan-bahan</h2>
-      <ul className="list-disc pl-6 mb-6">
-        {recipe.bahan.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-      <h2 className="text-2xl mb-4">Langkah-langkah</h2>
-      <ol className="list-decimal pl-6">
-        {recipe.langkah.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ol>
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold mb-2 text-gray-700">Bahan-bahan:</h2>
+        <ul className="list-disc list-inside text-gray-600 space-y-1">
+          {recipe.bahan.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 className="text-2xl font-semibold mb-2 text-gray-700">Langkah-langkah:</h2>
+        <ol className="list-decimal list-inside text-gray-600 space-y-2">
+          {recipe.langkah.map((step, index) => (
+            <li key={index}>{step}</li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }

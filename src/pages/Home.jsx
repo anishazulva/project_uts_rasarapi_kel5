@@ -85,7 +85,7 @@ function Home() {
   );
 
   return (
-    <div className="bg-gradient-to-b from-orange-50 to-white min-h-screen">
+    <div className="bg-gradient-to-b from-orange-50 to-white min-h-screen pb-10">
       <div className="container mx-auto px-4 py-8">
         {/* Hero Section */}
         <div className="text-center mb-10">
@@ -113,8 +113,8 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {filteredRecipes.length > 0 ? (
             filteredRecipes.map((recipe) => (
-              <div className="hover:scale-[1.02] transition-transform duration-200">
-                <RecipeCard key={recipe.id} title={recipe.title} image={recipe.image} id={recipe.id} />
+              <div className="hover:scale-[1.02] transition-transform duration-200" key={recipe.id}>
+                <RecipeCard title={recipe.title} image={recipe.image} id={recipe.id} />
               </div>
             ))
           ) : (
