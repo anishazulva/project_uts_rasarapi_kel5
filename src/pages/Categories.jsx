@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Data kategori
+// Data kategori dan resep tetap sama
 const categories = [
   'Olahan Ayam',
   'Olahan Daging',
@@ -12,7 +12,6 @@ const categories = [
   'Cemilan Manis',
 ];
 
-// Data resep sesuai kategori
 const recipes = [
   // Olahan Ayam
   { id: 1, name: 'Ayam Bakar Kecap', image: '/images/ayam_bakar_kecap.jpg', category: 'Olahan Ayam' },
@@ -75,44 +74,50 @@ function Categories() {
   const filteredRecipes = recipes.filter((r) => r.category === selectedCategory);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-6">Kategori Resep</h1>
+    <div className="bg-gradient-to-b from-orange-50 to-white min-h-screen">
+      <div className="container mx-auto p-4">
+        <h1 className="text-4xl font-bold text-orange-600 mb-6 text-center">Kategori Resep</h1>
 
-      {/* Kotak Kategori */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mb-6">
-        {categories.map((category, index) => (
-          <div
-            key={index}
-            className={`cursor-pointer p-4 rounded-xl text-center text-white font-semibold shadow-md ${
-              selectedCategory === category ? 'bg-blue-700' : 'bg-blue-500'
-            } hover:bg-blue-600`}
-            onClick={() => handleCategoryClick(category)}
-          >
-            {category}
-          </div>
-        ))}
+        {/* Kotak Kategori */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-6">
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className={`cursor-pointer p-6 rounded-xl text-center text-white font-semibold shadow-xl transition-transform transform hover:scale-105 ${
+                selectedCategory === category ? 'bg-orange-600' : 'bg-orange-500'
+              } hover:bg-orange-400`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              {category}
+            </div>
+          ))}
+        </div>
+
+        {/* Daftar Resep */}
+        {selectedCategory && (
+          <>
+            <h2 className="text-2xl font-semibold text-center mb-4">Resep: {selectedCategory}</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {filteredRecipes.map((recipe) => (
+                <div key={recipe.id} className="bg-white rounded-xl shadow-lg p-4 transition-transform hover:scale-105">
+                  <img
+                    src={recipe.image}
+                    alt={recipe.name}
+                    className="w-full h-40 object-cover rounded-lg mb-3"
+                  />
+                  <h3 className="text-lg font-semibold mb-2">{recipe.name}</h3>
+                  <button
+                    onClick={() => navigate(`/resep/${recipe.id}`)}
+                    className="w-full bg-orange-500 text-white p-2 rounded-md hover:bg-orange-400 transition"
+                  >
+                    Lihat Resep
+                  </button>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
-
-      {/* Daftar Resep */}
-      {selectedCategory && (
-        <>
-          <h2 className="text-2xl font-semibold mb-4">Resep: {selectedCategory}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {filteredRecipes.map((recipe) => (
-              <div key={recipe.id} className="bg-white rounded-xl shadow-md p-4">
-                <img
-                  src={recipe.image}
-                  alt={recipe.name}
-                  className="w-full h-40 object-cover rounded-lg mb-3"
-                />
-                <h3 className="text-lg font-semibold mb-2">{recipe.name}</h3>
-                <button onClick={() => navigate(`/resep/${recipe.id}`)} className="bg-blue-500 text-white p-2 rounded-md"> Lihat Resep </button>
-
-              </div>
-            ))}
-          </div>
-        </>
-      )}
     </div>
   );
 }

@@ -17,7 +17,6 @@ function DailyMenu() {
     Object.fromEntries(days.map(day => [day, []]))
   );
 
-  // Load menu dari localStorage saat pertama kali render
   useEffect(() => {
     const savedMenu = localStorage.getItem("dailyMenu");
     if (savedMenu) {
@@ -46,20 +45,20 @@ function DailyMenu() {
 
   return (
     <div className="relative min-h-screen container mx-auto p-4 pb-24">
-      <h1 className="text-4xl font-bold mb-6 text-center">Menu Harian</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-orange-600">Menu Harian</h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {days.map((day) => (
-          <div key={day} className="bg-white p-4 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-2">{day}</h2>
+          <div key={day} className="bg-orange-100 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+            <h2 className="text-2xl font-semibold mb-4 text-orange-700">{day}</h2>
 
-            <div className="h-48 overflow-y-auto border rounded p-2 mb-3">
+            <div className="h-48 overflow-y-auto border rounded p-2 mb-3 bg-white shadow-md">
               {recipeList.map((recipe, index) => (
                 <button
                   key={index}
                   onClick={() => handleToggleRecipe(day, recipe)}
-                  className={`block w-full text-left py-1 px-2 rounded 
-                    ${menu[day].includes(recipe) ? 'bg-blue-200 font-semibold' : 'hover:bg-blue-100'}`}
+                  className={`block w-full text-left py-2 px-3 rounded-lg mb-2 
+                    ${menu[day].includes(recipe) ? 'bg-orange-300 text-orange-800 font-semibold' : 'hover:bg-orange-200'}`}
                 >
                   {recipe}
                 </button>
@@ -69,7 +68,7 @@ function DailyMenu() {
             <ul className="list-disc list-inside text-gray-700">
               {menu[day].length > 0 ? (
                 menu[day].map((item, idx) => (
-                  <li key={idx}>{item}</li>
+                  <li key={idx} className="text-orange-700">{item}</li>
                 ))
               ) : (
                 <li className="italic text-gray-400">Belum ada resep</li>
@@ -79,22 +78,21 @@ function DailyMenu() {
         ))}
       </div>
 
-      {/* Tombol Simpan dan Reset di kanan bawah */}
-      <div className="fixed bottom-4 right-4 flex flex-col gap-3">
-        <button
-          onClick={handleResetAll}
-          className="bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded shadow"
-        >
-          Reset Semua Menu
-        </button>
-        <button
-          onClick={handleSave}
-          className="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded shadow"
-        >
-          Simpan Menu
-        </button>
-      </div>
+      <div className="fixed bottom-4 right-4 flex flex-col gap-4">
+  <button
+    onClick={handleResetAll}
+    className="bg-teal-500 hover:bg-teal-600 text-white px-5 py-2 rounded-md shadow"
+  >
+    Reset Semua Menu
+  </button>
+  <button
+    onClick={handleSave}
+    className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-md shadow"
+  >
+    Simpan Menu
+  </button>
     </div>
+  </div>
   );
 }
 

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
+import RecipeCard from '../components/RecipeCard';
+
 // Import gambar langsung
 import ayam_bakar_kecap from '../assets/ayam_bakar_kecap.jpg';
 import semur_daging from '../assets/semur_daging.jpeg';
@@ -35,8 +38,6 @@ import kue_cubit from '../assets/kue_cubit.jpeg';
 import kolak_pisang from '../assets/kolak_pisang.jpeg';
 import donat_kentang from '../assets/donat_kentang.jpeg';
 import dadar_gulung from '../assets/dadar_gulung.jpeg';
-
-import RecipeCard from '../components/RecipeCard';
 
 const recipes = [
   { id: 1, title: 'Ayam Bakar Kecap', image: ayam_bakar_kecap },
@@ -79,33 +80,47 @@ const recipes = [
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filter recipes based on search term
   const filteredRecipes = recipes.filter(recipe =>
     recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-6">Selamat datang di RasaRapi</h1>
-      <p className="text-lg mb-8">Temukan resep terbaik dan atur menu harianmu tanpa ribet!</p>
+    <div className="bg-gradient-to-b from-orange-50 to-white min-h-screen">
+      <div className="container mx-auto px-4 py-8">
+        {/* Hero Section */}
+        <div className="text-center mb-10">
+          <h1 className="text-5xl font-bold text-orange-600 mb-4">Selamat Datang di RasaRapi</h1>
+          <p className="text-gray-700 text-lg">Temukan resep terbaik dan atur menu harianmu tanpa ribet!</p>
+        </div>
 
-      {/* Search Bar */}
-      <input
-        type="text"
-        placeholder="Cari resep..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="p-2 border rounded mb-6 w-full md:w-1/3"
-      />
+        {/* Search Bar */}
+        <div className="flex justify-center mb-10">
+          <div className="relative w-full md:w-1/2">
+            <span className="absolute inset-y-0 left-3 flex items-center text-orange-500">
+              <FaSearch />
+            </span>
+            <input
+              type="text"
+              placeholder="Cari resep favoritmu..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 pr-4 py-3 w-full rounded-xl border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-400 shadow-sm"
+            />
+          </div>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {filteredRecipes.length > 0 ? (
-          filteredRecipes.map((recipe) => (
-            <RecipeCard key={recipe.id} title={recipe.title} image={recipe.image} id={recipe.id} />
-          ))
-        ) : (
-          <p className="col-span-3 text-center">Resep tidak ditemukan</p>
-        )}
+        {/* Recipe Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {filteredRecipes.length > 0 ? (
+            filteredRecipes.map((recipe) => (
+              <div className="hover:scale-[1.02] transition-transform duration-200">
+                <RecipeCard key={recipe.id} title={recipe.title} image={recipe.image} id={recipe.id} />
+              </div>
+            ))
+          ) : (
+            <p className="col-span-3 text-center text-gray-500">Resep tidak ditemukan</p>
+          )}
+        </div>
       </div>
     </div>
   );
