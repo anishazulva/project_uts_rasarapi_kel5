@@ -53,13 +53,19 @@ if ($method == 'DELETE') {
 
 // Handle PUT (update resep)
 if ($method == 'PUT') {
-    parse_str(file_get_contents("php://input"), $_PUT);
-    $id = $_PUT['id'];
-    $nama = $_PUT['nama'];
-    $kategori = $_PUT['kategori'];
-    $bahan = $_PUT['bahan'];
-    $langkah = $_PUT['langkah'];
+    $input = json_decode(file_get_contents("php://input"), true);
 
-    mysqli_query($koneksi, "UPDATE resep SET nama='$nama', kategori='$kategori', bahan='$bahan', langkah='$langkah' WHERE id = $id");
-    echo json_encode(["message" => "Resep berhasil diupdate"]);
+    $id = $input['id'] ?? null;
+    $nama = $input['nama'] ?? '';
+    $kategori = $input['kategori'] ?? '';
+    $bahan = $input['bahan'] ?? '';
+    $langkah = $input['langkah'] ?? '';
+
+    if ($id !== null) {
+        mysqli_query($koneksi, "UPDATE resep SET nama='$nama', kategori='$kategori', bahan='$bahan', langkah='$langkah' WHERE id = $id");
+        echo json_encode(["message" => "Resep berhasil diupdate"]);
+    } else {
+        http_response_code(400);
+        echo json_encode(["error" => "ID tidak boleh kosong."]);
+    }
 }
