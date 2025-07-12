@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_URL = 'http://localhost/rasarapi-api/kategori.php';
+const API_URL = 'http://localhost/kategori.php';
 
 const KelolaKategori = () => {
   const [kategori, setKategori] = useState([]);
@@ -14,8 +14,9 @@ const KelolaKategori = () => {
     setLoading(true);
     try {
       const res = await fetch(API_URL);
-      const data = await res.json();
-      setKategori(data);
+if (!res.ok) throw new Error('Respon tidak OK');
+const data = await res.json();
+setKategori(data);
     } catch (err) {
       setError('Gagal mengambil data kategori');
     }
