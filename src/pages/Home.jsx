@@ -80,6 +80,7 @@ const staticRecipes = [
 function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [recipes, setRecipes] = useState([]);
+  const [kategori, setKategori] = useState([]);
   const [newRecipe, setNewRecipe] = useState({ id: null, nama: '', kategori: '', bahan: '', langkah: '' });
   const [isEditing, setIsEditing] = useState(false);
 
@@ -93,8 +94,19 @@ function Home() {
     }
   };
 
+  const fetchKategori = async () => {
+    try {
+      const response = await fetch('http://localhost/rasarapi-api/kategori.php');
+      const data = await response.json();
+      setKategori(data);
+    } catch (error) {
+      console.error('Gagal mengambil data kategori:', error);
+    }
+  };
+
   useEffect(() => {
     fetchRecipes();
+    fetchKategori();
   }, []);
 
   const handleChange = (e) => {
@@ -178,7 +190,14 @@ function Home() {
           <h2 className="text-xl font-semibold mb-4 text-orange-600">{isEditing ? 'Edit Resep' : 'Tambah Resep'}</h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input type="text" name="nama" placeholder="Nama Resep" value={newRecipe.nama} onChange={handleChange} required className="border p-3 rounded-lg" />
-            <input type="text" name="kategori" placeholder="Kategori" value={newRecipe.kategori} onChange={handleChange} required className="border p-3 rounded-lg" />
+            <select name="kategori" value={newRecipe.kategori} onChange={handleChange} required className="border p-3 rounded-lg">
+              <option value="">Pilih Kategori</option>
+              {kategori.map((kat) => (
+                <option key={kat.id_kategori} value={kat.nama_kategori}>
+                  {kat.nama_kategori}
+                </option>
+              ))}
+            </select>
             <textarea name="bahan" placeholder="Bahan-bahan" value={newRecipe.bahan} onChange={handleChange} required className="border p-3 rounded-lg md:col-span-2"></textarea>
             <textarea name="langkah" placeholder="Langkah-langkah" value={newRecipe.langkah} onChange={handleChange} required className="border p-3 rounded-lg md:col-span-2"></textarea>
             <button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded-xl md:col-span-2">

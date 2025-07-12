@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./index";
+import KelolaKategori from "./pages/KelolaKategori";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/resep/:id" element={<RecipeDetail />} />
             <Route path="/menu-harian" element={<DailyMenu />} />
             <Route path="/profil" element={<Profile />} />
+            <Route path="/kelola-kategori" element={<KelolaKategori />} />
           </Routes>
         </main>
 

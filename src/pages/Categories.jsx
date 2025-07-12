@@ -118,6 +118,15 @@ function Categories() {
           </>
         )}
       </div>
+      {/* Tombol Kelola Kategori di kanan bawah kontainer */}
+      <div className="flex justify-end mt-8">
+        <button
+          onClick={() => navigate('/kelola-kategori')}
+          className="bg-orange-500 hover:bg-orange-600 text-white rounded-xl py-2 px-4 shadow-md transition"
+        >
+          Kelola Kategori
+        </button>
+      </div>
     </div>
   );
 }
